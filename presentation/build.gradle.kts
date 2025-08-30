@@ -1,23 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "com.bor96dev.coursesapp"
+    namespace = "com.bor96dev.presentation"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.bor96dev.coursesapp"
         minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -40,13 +37,13 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
-
 }
