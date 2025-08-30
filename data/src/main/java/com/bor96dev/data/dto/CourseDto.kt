@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CourseDto (
     @SerializedName("id")
-    val id: String,
+    val id: Int,
     @SerializedName("title")
     val title: String,
     @SerializedName("text")
@@ -12,7 +12,7 @@ data class CourseDto (
     @SerializedName("price")
     val price: String,
     @SerializedName("rate")
-    val rate: Double,
+    val rate: String,
     @SerializedName("startDate")
     val startDate: String,
     @SerializedName("hasLike")

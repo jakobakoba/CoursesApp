@@ -48,4 +48,8 @@ dependencies {
     ksp(libs.hilt.android.compiler)
 
     implementation(project(":domain"))
+
+    implementation(libs.room.android)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
 }
