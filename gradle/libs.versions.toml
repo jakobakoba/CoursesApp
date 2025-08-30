@@ -41,6 +41,8 @@ room-android = { group = "androidx.room", name = "room-runtime", version.ref = "
 room-compiler = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
 room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
 
+
+
 [plugins]
 hilt-android = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}

@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    implementation(libs.navigation.fragment)
+
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":presentation"))
