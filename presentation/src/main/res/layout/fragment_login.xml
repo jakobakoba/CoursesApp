@@ -152,6 +152,52 @@
         app:layout_constraintTop_toBottomOf="@id/forgot_password_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+    
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/divider_line"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/vk_button"
+            android:layout_width="0dp"
+            android:minHeight="56dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:icon="@drawable/vk_mini"
+            app:iconGravity="textStart"
+            app:cornerRadius="24dp"
+            app:iconSize="24dp"
+            android:padding="8dp"
+            app:iconTint="@android:color/white"
+            app:backgroundTint="#0077FF" />
+
+        <com.google.android.material.button.MaterialButton
+            android:minHeight="56dp"
+            android:id="@+id/ok_button"
+            app:iconSize="24dp"
+            android:padding="8dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text=""
+            app:icon="@drawable/ok_mini"
+            app:iconTint="@android:color/white"
+            app:iconGravity="textStart"
+            app:cornerRadius="30dp"
+            app:backgroundTint="#F58220" />
+
+
+    </LinearLayout>
 
 
 
