@@ -2,7 +2,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_name">CoursesApp</string>
-    <string name="courses">Main</string>
-    <string name="favorite">Favorite</string>
-    <string name="account">Account</string>
+    <string name="courses">Главная</string>
+    <string name="favorite">Избранное</string>
+    <string name="account">Аккаунт</string>
+
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_button_text">Вход</string>
+    <string name="no_account">Нет аккаунта?</string>
+    <string name="registration">Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
+
 </resources>
