@@ -11,17 +11,11 @@
         android:label="Вход"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
+            android:id="@+id/action_loginFragment_to_coursesFragment"
             app:destination="@id/coursesFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true"/>
     </fragment>
-
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.bor96dev.presentation.main.MainFragment"
-        android:label="MainFragment"
-        tools:layout="@layout/fragment_main"/>
 
     <fragment
         android:id="@+id/coursesFragment"
