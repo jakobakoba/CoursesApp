@@ -17,6 +17,11 @@ class CourseAdapter(
 
     private val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val outputFormat = SimpleDateFormat("d MMMM yyyy", Locale("ru"))
+    private val coverDrawables = listOf(
+        R.drawable.cover1,
+        R.drawable.cover2,
+        R.drawable.cover3
+    )
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,7 +36,7 @@ class CourseAdapter(
     }
 
     override fun onBindViewHolder(holder: CourseAdapter.CourseViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 
     private fun formatDate(dateString: String): String {
@@ -43,19 +48,26 @@ class CourseAdapter(
         }
     }
 
-    class CourseViewHolder(
+    private fun getCoverDrawableId(position: Int): Int {
+        return coverDrawables[position % coverDrawables.size]
+    }
+
+    inner class CourseViewHolder(
         private val binding: ItemCourseBinding,
         private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit,
         private val formatDate: (String) -> String
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(course: Course) = with (binding) {
+        fun bind(course: Course, position: Int) = with (binding) {
             tvTitle.text = course.title
             tvDescription.text = course.text
             tvPrice.text = "${course.price} ₽"
             ratingBar.text = course.rate.toFloat().toString()
             tvDate.text = formatDate(course.publishDate)
 
-            val favoriteIcon = if(course.hasLike) {
+            val coverDrawable = getCoverDrawableId(position)
+            ivCourseImage.setImageResource(coverDrawable)
+
+            val favoriteIcon = if (course.hasLike) {
                 R.drawable.ic_favorite
             } else {
                 R.drawable.ic_favorite_border
