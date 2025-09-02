@@ -13,8 +13,6 @@ data class CourseDto (
     val price: String,
     @SerializedName("rate")
     val rate: String,
-    @SerializedName("startDate")
-    val startDate: String,
     @SerializedName("hasLike")
     val hasLike: Boolean,
     @SerializedName("publishDate")

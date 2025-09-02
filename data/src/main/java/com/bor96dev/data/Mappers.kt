@@ -10,7 +10,6 @@ fun CourseDto.toDomain(isLiked: Boolean): Course {
         text = this.text,
         price = this.price,
         rate = this.rate,
-        startDate = this.startDate,
         hasLike = isLiked,
         publishDate = this.publishDate
     )

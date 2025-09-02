@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bor96dev.domain.Course
 import com.bor96dev.presentation.R
 import com.bor96dev.presentation.databinding.ItemCourseBinding
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class CourseAdapter(
     private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit
 ): ListAdapter<Course, CourseAdapter.CourseViewHolder>(CourseDiffCallback()) {
+
+    private val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private val outputFormat = SimpleDateFormat("d MMMM yyyy", Locale("ru"))
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,37 +27,42 @@ class CourseAdapter(
             parent,
             false
         )
-        return CourseViewHolder(binding, onFavoriteClick)
+        return CourseViewHolder(binding, onFavoriteClick, this::formatDate)
     }
 
     override fun onBindViewHolder(holder: CourseAdapter.CourseViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
+    private fun formatDate(dateString: String): String {
+        return try {
+            val date = inputFormat.parse(dateString) ?: return dateString
+            outputFormat.format(date)
+        } catch (e: Exception) {
+            dateString
+        }
+    }
+
     class CourseViewHolder(
         private val binding: ItemCourseBinding,
-        private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit
-    ): RecyclerView.ViewHolder(binding.root){
-        private val dateFormat = SimpleDateFormat("d MMMM yyyy", Locale("ru"))
-
+        private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit,
+        private val formatDate: (String) -> String
+    ): RecyclerView.ViewHolder(binding.root) {
         fun bind(course: Course) = with (binding) {
             tvTitle.text = course.title
             tvDescription.text = course.text
-            val formatter = DecimalFormat("#,###", DecimalFormatSymbols().apply {
-                groupingSeparator = ' '
-            })
-            tvPrice.text = "${formatter.format(course.price)} ₽"
+            tvPrice.text = "${course.price} ₽"
             ratingBar.text = course.rate.toFloat().toString()
-            tvDate.text = dateFormat.format(course.publishDate)
+            tvDate.text = formatDate(course.publishDate)
 
-            val favoriteIcon = if(course.hasLike){
+            val favoriteIcon = if(course.hasLike) {
                 R.drawable.ic_favorite
             } else {
                 R.drawable.ic_favorite_border
             }
             ivFavorite.setImageResource(favoriteIcon)
 
-            ivFavorite.setOnClickListener{
+            ivFavorite.setOnClickListener {
                 onFavoriteClick(course.id, !course.hasLike)
             }
         }
@@ -70,7 +77,4 @@ class CourseAdapter(
             return oldItem == newItem
         }
     }
-
-
-
 }
