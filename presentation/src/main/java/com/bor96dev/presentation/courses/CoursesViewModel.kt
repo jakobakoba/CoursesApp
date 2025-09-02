@@ -2,7 +2,7 @@ package com.bor96dev.presentation.courses
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bor96dev.domain.model.Course
+import com.bor96dev.domain.Course
 import com.bor96dev.domain.usecase.GetCoursesUseCase
 import com.bor96dev.domain.usecase.ToggleFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
