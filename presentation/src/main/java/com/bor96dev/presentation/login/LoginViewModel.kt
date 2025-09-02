@@ -44,6 +44,4 @@ class LoginViewModel @Inject constructor(): ViewModel() {
     private fun isValidPassword(password: String) : Boolean {
         return password.isNotEmpty()
     }
-
-
 }

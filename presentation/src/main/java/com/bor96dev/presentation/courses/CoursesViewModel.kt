@@ -8,19 +8,14 @@ import com.bor96dev.domain.usecase.ToggleFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.collections.sortedBy
-import kotlin.collections.sortedByDescending
 
 @HiltViewModel
 class CoursesViewModel @Inject constructor(
     private val getCoursesUseCase: GetCoursesUseCase,
     private val toggleFavoriteUseCase: ToggleFavoriteUseCase
 ) : ViewModel() {
-
-
 
     private val _uiState = MutableStateFlow<CoursesUiState>(CoursesUiState.Loading)
     val uiState: StateFlow<CoursesUiState> = _uiState
@@ -68,10 +63,6 @@ class CoursesViewModel @Inject constructor(
             allCourses.sortedBy { it.id }
         }
         _uiState.value = CoursesUiState.Success(sortedCourses)
-    }
-
-    fun getFavoriteCourses(): List<Course> {
-        return allCourses.filter { it.hasLike }
     }
 }
 
