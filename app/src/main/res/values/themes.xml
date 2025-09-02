@@ -8,4 +8,9 @@
     </style>
 
     <style name="Theme.CoursesApp" parent="Base.Theme.CoursesApp" />
+
+    <style name="ShapeAppearanceOverlay.App.FullButton" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
