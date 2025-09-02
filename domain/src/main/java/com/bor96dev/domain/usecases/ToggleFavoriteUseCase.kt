@@ -7,7 +7,7 @@ import javax.inject.Inject
 class ToggleFavoriteUseCase @Inject constructor(
     private val repository: CourseRepository
 ) {
-    suspend operator fun invoke(courseId: Int) {
-        repository.updateCourseLike(courseId, true) // Toggle logic is handled in the repository
+    suspend operator fun invoke(courseId: Int, isFavorite: Boolean) {
+        repository.updateCourseLike(courseId, isFavorite)
     }
 }

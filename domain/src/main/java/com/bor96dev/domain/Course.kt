@@ -6,6 +6,6 @@ data class Course(
     val text: String,
     val price: String,
     val rate: String,
-    var hasLike: Boolean,
-    val publishDate: String
+    var hasLike: Boolean = false,
+    val publishDate: String,
 )

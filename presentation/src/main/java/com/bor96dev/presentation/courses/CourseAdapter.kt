@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class CourseAdapter(
-    private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit
+    private val onFavoriteClick: (course: Course) -> Unit
 ): ListAdapter<Course, CourseAdapter.CourseViewHolder>(CourseDiffCallback()) {
 
     private val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -32,7 +32,7 @@ class CourseAdapter(
             parent,
             false
         )
-        return CourseViewHolder(binding, onFavoriteClick, this::formatDate)
+        return CourseViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CourseAdapter.CourseViewHolder, position: Int) {
@@ -54,8 +54,6 @@ class CourseAdapter(
 
     inner class CourseViewHolder(
         private val binding: ItemCourseBinding,
-        private val onFavoriteClick: (courseId: Int, isFavorite: Boolean) -> Unit,
-        private val formatDate: (String) -> String
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(course: Course, position: Int) = with (binding) {
             tvTitle.text = course.title
@@ -72,10 +70,10 @@ class CourseAdapter(
             } else {
                 R.drawable.ic_favorite_border
             }
-            ivFavorite.setImageResource(favoriteIcon)
+            favoriteChecker.setImageResource(favoriteIcon)
 
             ivFavorite.setOnClickListener {
-                onFavoriteClick(course.id, !course.hasLike)
+                onFavoriteClick(course)
             }
         }
     }

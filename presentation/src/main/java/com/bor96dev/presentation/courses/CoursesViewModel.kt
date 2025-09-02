@@ -20,6 +20,8 @@ class CoursesViewModel @Inject constructor(
     private val toggleFavoriteUseCase: ToggleFavoriteUseCase
 ) : ViewModel() {
 
+
+
     private val _uiState = MutableStateFlow<CoursesUiState>(CoursesUiState.Loading)
     val uiState: StateFlow<CoursesUiState> = _uiState
 
@@ -32,35 +34,44 @@ class CoursesViewModel @Inject constructor(
 
     fun loadCourses() {
         viewModelScope.launch {
+            _uiState.value = CoursesUiState.Loading
             try {
-                getCoursesUseCase().collectLatest { courses ->
-                    allCourses = if (isSortedByDate) {
-                        courses.sortedByDescending { it.publishDate }
-                    } else {
-                        courses
-                    }
-                    _uiState.value = CoursesUiState.Success(allCourses)
+                getCoursesUseCase().collect { courses ->
+                    allCourses = courses
+                    updateUiWithCurrentSort()
                 }
             } catch (e: Exception) {
-                _uiState.value = CoursesUiState.Error(e.message ?: "Unknown error")
+                _uiState.value = CoursesUiState.Error(e.message ?: "Error loading courses")
             }
         }
     }
 
-    fun toggleFavorite(courseId: Int) {
+    fun toggleFavorite(course: Course) {
         viewModelScope.launch {
-            toggleFavoriteUseCase(courseId)
+            try {
+                toggleFavoriteUseCase(course.id, !course.hasLike)
+            } catch (e: Exception) {
+                _uiState.value = CoursesUiState.Error("Failed to update favorite status")
+            }
         }
     }
 
     fun toggleSort() {
         isSortedByDate = !isSortedByDate
-        allCourses = if (isSortedByDate) {
+        updateUiWithCurrentSort()
+    }
+
+    private fun updateUiWithCurrentSort() {
+        val sortedCourses = if (isSortedByDate) {
             allCourses.sortedByDescending { it.publishDate }
         } else {
             allCourses.sortedBy { it.id }
         }
-        _uiState.value = CoursesUiState.Success(allCourses)
+        _uiState.value = CoursesUiState.Success(sortedCourses)
+    }
+
+    fun getFavoriteCourses(): List<Course> {
+        return allCourses.filter { it.hasLike }
     }
 }
 

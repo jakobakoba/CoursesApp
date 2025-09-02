@@ -39,8 +39,8 @@ class CoursesFragment : Fragment() {
     }
 
     private fun setupRecyclerView(){
-        adapter = CourseAdapter {courseId, isFavorite ->
-            viewModel.toggleFavorite(courseId)
+        adapter = CourseAdapter {course->
+            viewModel.toggleFavorite(course)
         }
 
         binding.recyclerView.apply {
@@ -58,6 +58,7 @@ class CoursesFragment : Fragment() {
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
+
             viewModel.uiState.collectLatest { state ->
                 when(state){
                     is CoursesUiState.Loading -> {

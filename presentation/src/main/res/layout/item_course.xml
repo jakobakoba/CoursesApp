@@ -48,6 +48,7 @@
                 >
 
                 <ImageView
+                    android:id="@+id/favorite_checker"
                     android:layout_gravity="center"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
