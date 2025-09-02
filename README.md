@@ -3,6 +3,8 @@
 https://github.com/user-attachments/assets/39235ab5-559c-4176-a25f-7824d895bfd3
 
 
+версия AS: Android Studio Narwhal | 2025.1.1 RC 2
+AGP: 8.11.0-rc02
 
 Cтек:
 котлин
