@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bor96dev.domain.Course
 import com.bor96dev.presentation.R
+import com.bor96dev.presentation.databinding.ItemCourseBinding
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -38,8 +41,11 @@ class CourseAdapter(
         fun bind(course: Course) = with (binding) {
             tvTitle.text = course.title
             tvDescription.text = course.text
-            tvPrice.text = root.context.getString(R.string.price_format, course.price)
-            ratingBar.rating = course.rate.toFloat()
+            val formatter = DecimalFormat("#,###", DecimalFormatSymbols().apply {
+                groupingSeparator = ' '
+            })
+            tvPrice.text = "${formatter.format(course.price)} ₽"
+            ratingBar.text = course.rate.toFloat().toString()
             tvDate.text = dateFormat.format(course.publishDate)
 
             val favoriteIcon = if(course.hasLike){
