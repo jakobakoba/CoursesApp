@@ -1,4 +1,8 @@
-https://github.com/user-attachments/assets/bccd5b44-55c2-4e76-88f6-97ec3d781e99
+
+
+https://github.com/user-attachments/assets/39235ab5-559c-4176-a25f-7824d895bfd3
+
+
 
 Cтек:
 котлин
