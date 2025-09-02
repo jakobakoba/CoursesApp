@@ -36,57 +36,63 @@
             android:paddingVertical="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/ivCourseImage"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp">
 
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:src="@drawable/ic_favorite"
-                />
-
-            <TextView
-                android:id="@+id/ratingBar"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                android:layout_marginStart="4dp"
-                tools:text="4.9" />
+                android:background="@drawable/rounded_bg"
+                android:orientation="horizontal"
+                android:padding="6dp"
+                >
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="12dp"
-                android:background="@android:color/white"
-                android:alpha="0.5"
-                android:layout_marginHorizontal="4dp" />
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_favorite_border" />
+
+                <TextView
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    tools:text="4.9" />
+
+            </LinearLayout>
 
             <TextView
+                android:layout_marginStart="4dp"
+                android:background="@drawable/rounded_bg"
+                android:padding="6dp"
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textSize="12sp"
                 tools:text="22 Мая 2024" />
+
+
         </LinearLayout>
 
-        <!-- Favorite Button -->
         <ImageButton
             android:id="@+id/ivFavorite"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:background="@color/light_gray"
+            android:background="@drawable/rounded_bg"
             android:padding="6dp"
             android:scaleType="fitCenter"
             app:layout_constraintTop_toTopOf="@id/ivCourseImage"
             app:layout_constraintEnd_toEndOf="@id/ivCourseImage"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:srcCompat="@drawable/bookmark"
+            app:srcCompat="@drawable/bookmarkmine"
             app:tint="@android:color/white"
             android:contentDescription="@string/favorite" />
 
-        <!-- Course Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="0dp"
@@ -102,7 +108,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Название курса" />
 
-        <!-- Course Description -->
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
@@ -120,7 +125,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Описание курса, которое может быть довольно длинным и будет обрезано после двух строк" />
 
-        <!-- Price and Details -->
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
@@ -131,11 +135,16 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/white"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
             tools:text="12 000 ₽" />
 
         <TextView
+            android:gravity="top"
+            android:paddingBottom="16dp"
             android:id="@+id/tvDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
